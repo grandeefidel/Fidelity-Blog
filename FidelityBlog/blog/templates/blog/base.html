@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fidel's blog</title>
+
+    <!-- mdbootstrap -->
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/css/mdb.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/fid_blog.css' %}">
+    <!-- Medium style editor -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+
+    <!-- custom css -->
+<!-- <link rel="stylesheet" href="{% static 'css/fid_blog.css' %}"> -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Sigmar+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- navbar -->
+    <!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="{% url 'post_list' %}">Fidel's Blog</a>
+  
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+  
+      <!-- Links -->
+      {% if user.is_authenticated %}
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item">
+          <a class="nav-link">Welcome: {{user.username}}</a>
+        </li>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Github</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Linkedin</a>
+          </li> -->
+  
+      </ul>
+      {% endif %}
+      <!-- Links -->
+  
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'post_list'%}">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'create_post' %}">New Post</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+          </li>
+          <li class="nav-item"><a href="{% url 'create' %}" class="nav-link">Group Post</a></li>
+          
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'groups:all' %}">Groups</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'groups:create' %}">Create Groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+          </li>
+
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'post_list'%}">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'groups:all' %}">Groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}"><span class="mr-2"><i class="fa fa-user"></i></span>Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup' %}"><span class="mr-2"><i class="fa fa-user-plus"></i></span>Sign Up</a>
+          </li>
+
+        {% endif %}
+      </ul>
+      <!-- Links -->
+    </div>
+    <!-- Collapsible content -->
+  
+  </nav>
+  <!--/.Navbar-->
+        <div class="container " id="note">
+
+    {% block body %}
+    
+    {% endblock %}
+</div>
+
+<canvas id="canvas">
+
+  
+</canvas>
+    <!-- javascript -->
+    <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js"></script>
+
+<script text="text/javascript" src="{% static 'js/fid_blog.js' %}"></script>
+</body>
+</html>

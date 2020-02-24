@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    
+    <div class="">
+        
+        <h2 class="font-weight-bold ">Login</h2>
+    </div>
+
+    <!-- <h3 class="font-weight-bolder">(Must be a superuser, please check with the admin)</h3> -->
+    
+    {% if form.errors %}
+    <p >Your username and password didn't match! Please try again.</p>
+    {% endif %}
+<form action="{% url 'login' %}" method="POST" class="mt-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary btn-sm">
+    <!-- <input type="hidden" name="next" value="{{next}}"> -->
+</form>
+
+</div>
+
+{% endblock %}

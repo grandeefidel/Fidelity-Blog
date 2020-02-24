@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% load bootstrap3 %}
+{% block body %}
+<div class="container my-3">
+    
+    <div class="">
+        
+        <h2 class="font-weight-bold ">Sign up</h2>
+    </div>
+
+    <!-- {% if form.errors %}
+    <p >Your username and password didn't match! Please try again.</p>
+    {% endif %} -->
+    <div class="row">
+        <div class="col-md-6">
+
+            <form action="{% url 'signup' %}" method="POST" class="mt-4">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <!-- {{ form.as_p }} -->
+                <input type="submit" class="btn btn-primary btn-sm">
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
